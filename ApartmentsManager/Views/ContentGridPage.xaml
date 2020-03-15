@@ -1,0 +1,505 @@
+﻿<Page
+    x:Class="ApartmentsManager.Views.ContentGridPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    xmlns:models="using:ApartmentsManager.Models">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Rectangle
+            Grid.Row="0"
+            Grid.Column="0"
+            Width="25"
+            Height="118"
+            Fill="#4bd7b5" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            CharacterSpacing="-100"
+            FontFamily="{StaticResource HelveticaNeue}"
+            FontSize="52"
+            FontWeight="Bold"
+            Text="Full Listings" />
+        <Grid
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0">
+                <Border
+                    Width="100"
+                    Height="38"
+                    Margin="{StaticResource ListingsMargin}"
+                    HorizontalAlignment="Left"
+                    Background="#525252">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource HelveticaNeue}"
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Block" />
+                </Border>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Margin="5,5,15,5"
+                        Content="A"
+                        IsChecked="{x:Bind ViewModel.BlockA, Mode=TwoWay}"
+                        Style="{StaticResource DefaultCheckBoxStyle}" />
+                    <CheckBox
+                        Margin="5"
+                        Content="B"
+                        IsChecked="{x:Bind ViewModel.BlockB, Mode=TwoWay}"
+                        Style="{StaticResource DefaultCheckBoxStyle}" />
+                    <CheckBox
+                        Margin="5"
+                        Content="C"
+                        IsChecked="{x:Bind ViewModel.BlockC, Mode=TwoWay}"
+                        Style="{StaticResource DefaultCheckBoxStyle}" />
+                    <CheckBox
+                        Margin="5,5,15,5"
+                        Content="D"
+                        IsChecked="{x:Bind ViewModel.BlockD, Mode=TwoWay}"
+                        Style="{StaticResource DefaultCheckBoxStyle}" />
+                    <CheckBox
+                        Margin="5,5,15,5"
+                        Content="E"
+                        IsChecked="{x:Bind ViewModel.BlockE, Mode=TwoWay}"
+                        Style="{StaticResource DefaultCheckBoxStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0,20,0,0">
+                <Border
+                    Width="100"
+                    Height="38"
+                    Margin="{StaticResource ListingsMargin}"
+                    HorizontalAlignment="Left"
+                    Background="#525252">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource HelveticaNeue}"
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="PRICE" />
+                </Border>
+                <controls:RangeSelector
+                    Name="priceSlider"
+                    VerticalAlignment="Top"
+                    Background="#525252"
+                    Foreground="#4bd7b5"
+                    Maximum="5000"
+                    Minimum="0"
+                    RangeMax="{x:Bind ViewModel.MaxPrice}"
+                    RangeMin="{x:Bind ViewModel.MinPrice}" />
+                <Grid Width="{Binding ElementName=priceSlider, Path=Width}" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Text="{Binding ElementName=priceSlider, Path=RangeMin}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Text="{Binding ElementName=priceSlider, Path=RangeMax}" />
+                </Grid>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="0,20,0,0">
+                <Border
+                    Width="100"
+                    Height="38"
+                    Margin="{StaticResource ListingsMargin}"
+                    HorizontalAlignment="Left"
+                    Background="#525252">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource HelveticaNeue}"
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="FLOORS" />
+                </Border>
+                <controls:RangeSelector
+                    Name="roomsSlider"
+                    VerticalAlignment="Top"
+                    Background="#525252"
+                    Foreground="#4bd7b5"
+                    Maximum="18"
+                    Minimum="0"
+                    RangeMax="{x:Bind ViewModel.MinFloors}"
+                    RangeMin="{x:Bind ViewModel.MaxFloors}" />
+                <Grid Width="{Binding ElementName=roomsSlider, Path=Width}" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="{Binding ElementName=roomsSlider, Path=RangeMin}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Text="{Binding ElementName=roomsSlider, Path=RangeMax}" />
+                </Grid>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="3"
+                Margin="0,20,0,0"
+                Orientation="Horizontal">
+                <StackPanel Margin="0,0,0,20">
+                    <Border
+                        Width="100"
+                        Height="38"
+                        Margin="{StaticResource ListingsMargin}"
+                        HorizontalAlignment="Left"
+                        Background="#525252">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="{StaticResource HelveticaNeue}"
+                            FontSize="15"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Text="STATUS" />
+                    </Border>
+                    <CheckBox
+                        Content="Available"
+                        IsChecked="{x:Bind ViewModel.IsAvailable, Mode=TwoWay}"
+                        Style="{StaticResource DefaultCheckBoxStyle}" />
+                    <CheckBox
+                        Content="Unavailable"
+                        IsChecked="{x:Bind ViewModel.IsUnavailable, Mode=TwoWay}"
+                        Style="{StaticResource DefaultCheckBoxStyle}" />
+                    <CheckBox
+                        Content="Reserved"
+                        IsChecked="{x:Bind ViewModel.IsReserved, Mode=TwoWay}"
+                        Style="{StaticResource DefaultCheckBoxStyle}" />
+                </StackPanel>
+                <StackPanel Margin="40,0,0,0">
+                    <Border
+                        Width="100"
+                        Height="38"
+                        Margin="{StaticResource ListingsMargin}"
+                        HorizontalAlignment="Left"
+                        Background="#525252">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="{StaticResource HelveticaNeue}"
+                            FontSize="15"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Text="BEDROOMS" />
+                    </Border>
+                    <CheckBox
+                        Content="1 Bedroom"
+                        IsChecked="{x:Bind ViewModel.OneBedRoom, Mode=TwoWay}"
+                        Style="{StaticResource RoomCheckBoxStyle}" />
+                    <CheckBox
+                        Content="2 Bedroom"
+                        IsChecked="{x:Bind ViewModel.TwoBedRooms, Mode=TwoWay}"
+                        Style="{StaticResource RoomCheckBoxStyle}" />
+                    <CheckBox
+                        Content="3 Bedroom"
+                        IsChecked="{x:Bind ViewModel.ThreeBedRooms, Mode=TwoWay}"
+                        Style="{StaticResource RoomCheckBoxStyle}" />
+                    <CheckBox
+                        Content="4 Bedroom"
+                        IsChecked="{x:Bind ViewModel.FourBedRooms, Mode=TwoWay}"
+                        Style="{StaticResource RoomCheckBoxStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <Button
+                Grid.Row="4"
+                Width="120"
+                Height="45"
+                Margin="0,30,0,0"
+                Background="#4bd7b5"
+                Command="{x:Bind ViewModel.ResetFilterApartmentsCommand}"
+                Content="Reset Filters" />
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="2,50,2,0"
+            Padding="16,0,32,0"
+            HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border
+                Grid.Column="0"
+                Height="38"
+                Margin="{StaticResource ListingsMargin}"
+                Background="#4bd7b5">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource HelveticaNeue}"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="FLOOR" />
+            </Border>
+            <Border
+                Grid.Row="0"
+                Grid.Column="1"
+                Height="38"
+                Margin="{StaticResource ListingsMargin}"
+                Background="#4bd7b5">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource HelveticaNeue}"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="PLOT" />
+            </Border>
+            <Border
+                Grid.Row="0"
+                Grid.Column="2"
+                Height="38"
+                Margin="{StaticResource ListingsMargin}"
+                Background="#4bd7b5">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource HelveticaNeue}"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="BED" />
+            </Border>
+            <Border
+                Grid.Row="0"
+                Grid.Column="3"
+                Height="38"
+                Margin="{StaticResource ListingsMargin}"
+                Background="#4bd7b5">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource HelveticaNeue}"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="BATH" />
+            </Border>
+            <Border
+                Grid.Row="0"
+                Grid.Column="4"
+                Height="38"
+                Margin="{StaticResource ListingsMargin}"
+                Background="#4bd7b5">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource HelveticaNeue}"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="SQM" />
+            </Border>
+            <Border
+                Grid.Row="0"
+                Grid.Column="5"
+                Height="38"
+                Margin="{StaticResource ListingsMargin}"
+                Background="#4bd7b5">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource HelveticaNeue}"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="SQFT" />
+            </Border>
+            <Border
+                Grid.Row="0"
+                Grid.Column="6"
+                Height="38"
+                Margin="{StaticResource ListingsMargin}"
+                Background="#4bd7b5">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource HelveticaNeue}"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="STATUS" />
+            </Border>
+            <Border
+                Grid.Row="0"
+                Grid.Column="7"
+                Height="38"
+                Margin="{StaticResource ListingsMargin}"
+                Background="#4bd7b5">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource HelveticaNeue}"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="PRICE" />
+            </Border>
+            <Border
+                Grid.Row="0"
+                Grid.Column="8"
+                Height="38"
+                Margin="{StaticResource ListingsMargin}"
+                Background="#4bd7b5">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource HelveticaNeue}"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="VIEW" />
+            </Border>
+            <NavigationViewItemSeparator
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="9" />
+        </Grid>
+        <GridView
+            x:Name="ContentArea"
+            Grid.Row="2"
+            Grid.Column="2"
+            MaxHeight="680"
+            Padding="16,0,32,16"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            animations:Connected.ListItemElementName="row"
+            animations:Connected.ListItemKey="animationKeyContentGrid"
+            extensions:ScrollViewerExtensions.EnableMiddleClickScrolling="True"
+            Background="Transparent"
+            IsItemClickEnabled="True"
+            ItemsSource="{x:Bind ViewModel.Apartments, Mode=OneWay}"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            SelectionMode="None">
+            <GridView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource BorderlessGridViewItem}" TargetType="GridViewItem">
+                    <Setter Property="Margin" Value="6" />
+                </Style>
+            </GridView.ItemContainerStyle>
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="models:SampleApartment">
+                    <controls:DropShadowPanel
+                        x:Name="row"
+                        Height="60"
+                        Margin="0,2">
+                        <controls:DropShadowPanel.Shadow>
+                            <ThemeShadow />
+                        </controls:DropShadowPanel.Shadow>
+                        <Grid Background="White" CornerRadius="1.5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="65" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="1"
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind Floor}" />
+                            <TextBlock
+                                Grid.Column="2"
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind Plot}" />
+                            <TextBlock
+                                Grid.Column="3"
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind Bedrooms}" />
+                            <TextBlock
+                                Grid.Column="4"
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind Bathrooms}" />
+                            <TextBlock
+                                Grid.Column="5"
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind SqM}" />
+                            <TextBlock
+                                Grid.Column="6"
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind SqFt}" />
+                            <TextBlock
+                                Grid.Column="7"
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind Status}" />
+                            <TextBlock
+                                Grid.Column="8"
+                                Margin="15,8,8,8"
+                                Style="{ThemeResource BodyTextStyle}"
+                                Text="{x:Bind Price}" />
+                            <FontIcon
+                                Grid.Column="9"
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                Glyph="&#xE946;" />
+                        </Grid>
+                    </controls:DropShadowPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+</Page>
