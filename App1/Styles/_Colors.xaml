@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="ThemeControlForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}" />
+    <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundChecked" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillChecked" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundCheckedPointerOver" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="RadioButtonCheckGlyphFill" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="RadioButtonCheckGlyphFillPointerOver" Color="#4bd7b5" />
+
+    <SolidColorBrush x:Key="ScrollBarThumbFill" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="ScrollBarThumbFillPointerOver" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="ScrollBarThumbFillPressed" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="ScrollBarThumbFillDisabled" Color="Pink" />
+
+</ResourceDictionary>
