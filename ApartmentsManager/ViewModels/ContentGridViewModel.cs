@@ -28,6 +28,8 @@ namespace ApartmentsManager.ViewModels
             }
         }
 
+        private SampleApartment _selectedApartment;
+
         private bool IsReset
         {
             get
@@ -257,9 +259,6 @@ namespace ApartmentsManager.ViewModels
 
         #region Commands
 
-        private ICommand _itemClickCommand;
-        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<SampleApartment>(OnItemClick));
-
         private ICommand _resetFilterApartmentsCommand;
         public ICommand ResetFilterApartmentsCommand => _resetFilterApartmentsCommand ?? (_resetFilterApartmentsCommand = new RelayCommand(ResetFilterApartments));
 
@@ -271,6 +270,7 @@ namespace ApartmentsManager.ViewModels
         {
             _source = new List<SampleApartment>();
             Apartments = new List<SampleApartment>();
+            _selectedApartment = new SampleApartment();
         }
 
         #endregion
@@ -289,18 +289,53 @@ namespace ApartmentsManager.ViewModels
             MaxFloors = 100;
         }
 
-        private void OnItemClick(SampleApartment clickedItem)
+        public void OnItemClick(int unitRef)
         {
-            if (clickedItem != null)
+            _selectedApartment = Apartments.FirstOrDefault(x => x.UnitRef == unitRef);
+            if (_selectedApartment != null)
             {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem);
-                NavigationService.Navigate<ContentGridDetailPage>(clickedItem);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(_selectedApartment);
+                NavigationService.Navigate<ContentGridDetailPage>(_selectedApartment);
             }
         }
 
         private void ResetFilterApartments()
         {
+            _blockA = false;
+            _blockB = false;
+            _blockC = false;
+            _blockD = false;
+            _blockE = false;
+            _minPrice = 100000;
+            _maxPrice = 1000000;
+            _minfloors = 0;
+            _maxfloors = 100;
+            _isAvailable = false;
+            _isUnavailable = false;
+            _isReserved = false;
+            _oneBedRoom = false;
+            _twoBedRooms = false;
+            _threeBedRooms = false;
+            _fourBedRooms = false;
 
+            OnPropertyChanged(nameof(BlockA));
+            OnPropertyChanged(nameof(BlockB));
+            OnPropertyChanged(nameof(BlockC));
+            OnPropertyChanged(nameof(BlockD));
+            OnPropertyChanged(nameof(BlockE));
+            OnPropertyChanged(nameof(MinPrice));
+            OnPropertyChanged(nameof(MaxPrice));
+            OnPropertyChanged(nameof(MinFloors));
+            OnPropertyChanged(nameof(MaxFloors));
+            OnPropertyChanged(nameof(IsAvailable));
+            OnPropertyChanged(nameof(IsUnavailable));
+            OnPropertyChanged(nameof(IsReserved));
+            OnPropertyChanged(nameof(OneBedRoom));
+            OnPropertyChanged(nameof(TwoBedRooms));
+            OnPropertyChanged(nameof(ThreeBedRooms));
+            OnPropertyChanged(nameof(FourBedRooms));
+
+            FilterApartments();
         }
 
         private void FilterApartments()

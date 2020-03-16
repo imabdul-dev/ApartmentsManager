@@ -458,7 +458,10 @@
                         <controls:DropShadowPanel.Shadow>
                             <ThemeShadow />
                         </controls:DropShadowPanel.Shadow>
-                        <Grid Background="White" CornerRadius="1.5">
+                        <Grid
+                            Name="ItemsGrid"
+                            Background="White"
+                            CornerRadius="1.5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="15" />
                                 <ColumnDefinition Width="100" />
@@ -506,12 +509,21 @@
                                 Text="{x:Bind Price, Converter={StaticResource CurrencyConverter}}" />
                             <FontIcon
                                 Grid.Column="9"
+                                Width="48"
+                                Height="48"
+                                Margin="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                Glyph="&#xE946;" />
+                                Glyph="&#xE946;"
+                                IsTapEnabled="True"
+                                Tag="{x:Bind UnitRef}"
+                                Tapped="UIElement_OnTapped" />
                         </Grid>
                     </controls:DropShadowPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
     </Grid>
+
 </Page>

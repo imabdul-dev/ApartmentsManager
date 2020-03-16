@@ -16,7 +16,7 @@
 
         public override string ToString()
         {
-            return $"{Floor} {Plot}";
+            return $"Floor {Floor} Plot {Plot}";
         }
 
         public string ShortDescription => $"Appartment ID: {UnitRef}";
