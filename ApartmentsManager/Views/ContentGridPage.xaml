@@ -3,9 +3,15 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:behaviors="using:ApartmentsManager.Behaviors"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    xmlns:helpers="using:ApartmentsManager.Helpers"
     xmlns:models="using:ApartmentsManager.Models">
+
+    <Page.Resources>
+        <helpers:CurrencyConverter x:Key="CurrencyConverter" />
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -112,27 +118,30 @@
                 <controls:RangeSelector
                     Name="priceSlider"
                     VerticalAlignment="Top"
+                    behaviors:SliderRangeMaxBindingBehavior.RangeMax="{x:Bind ViewModel.MaxPrice, Mode=TwoWay}"
+                    behaviors:SliderRangeMinBindingBehavior.RangeMin="{x:Bind ViewModel.MinPrice, Mode=TwoWay}"
                     Background="#525252"
                     Foreground="#4bd7b5"
-                    Maximum="5000"
-                    Minimum="0"
-                    RangeMax="{x:Bind ViewModel.MaxPrice}"
-                    RangeMin="{x:Bind ViewModel.MinPrice}" />
-                <Grid Width="{Binding ElementName=priceSlider, Path=Width}" VerticalAlignment="Top">
+                    Maximum="1000000"
+                    Minimum="100000" />
+                <Grid
+                    Width="{Binding ElementName=priceSlider, Path=ActualWidth}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160" />
-                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="270" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
                         Grid.Column="0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Text="{Binding ElementName=priceSlider, Path=RangeMin}" />
+                        Text="{Binding ElementName=priceSlider, Path=RangeMin, Converter={StaticResource CurrencyConverter}}" />
                     <TextBlock
                         Grid.Column="1"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
-                        Text="{Binding ElementName=priceSlider, Path=RangeMax}" />
+                        Text="{Binding ElementName=priceSlider, Path=RangeMax, Converter={StaticResource CurrencyConverter}}" />
                 </Grid>
             </StackPanel>
             <StackPanel
@@ -155,29 +164,32 @@
                         Text="FLOORS" />
                 </Border>
                 <controls:RangeSelector
-                    Name="roomsSlider"
+                    Name="floorsSlider"
                     VerticalAlignment="Top"
+                    behaviors:SliderRangeMaxBindingBehavior.RangeMax="{x:Bind ViewModel.MaxFloors, Mode=TwoWay}"
+                    behaviors:SliderRangeMinBindingBehavior.RangeMin="{x:Bind ViewModel.MinFloors, Mode=TwoWay}"
                     Background="#525252"
                     Foreground="#4bd7b5"
-                    Maximum="18"
-                    Minimum="0"
-                    RangeMax="{x:Bind ViewModel.MinFloors}"
-                    RangeMin="{x:Bind ViewModel.MaxFloors}" />
-                <Grid Width="{Binding ElementName=roomsSlider, Path=Width}" VerticalAlignment="Top">
+                    Maximum="100"
+                    Minimum="0" />
+                <Grid
+                    Width="{Binding ElementName=floorsSlider, Path=ActualWidth}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160" />
-                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
                         Grid.Column="0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        Text="{Binding ElementName=roomsSlider, Path=RangeMin}" />
+                        Text="{Binding ElementName=floorsSlider, Path=RangeMin}" />
                     <TextBlock
                         Grid.Column="1"
-                        HorizontalAlignment="Right"
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        Text="{Binding ElementName=roomsSlider, Path=RangeMax}" />
+                        Text="{Binding ElementName=floorsSlider, Path=RangeMax}" />
                 </Grid>
             </StackPanel>
             <StackPanel
@@ -491,7 +503,7 @@
                                 Grid.Column="8"
                                 Margin="15,8,8,8"
                                 Style="{ThemeResource BodyTextStyle}"
-                                Text="{x:Bind Price}" />
+                                Text="{x:Bind Price, Converter={StaticResource CurrencyConverter}}" />
                             <FontIcon
                                 Grid.Column="9"
                                 FontFamily="{StaticResource SymbolThemeFontFamily}"

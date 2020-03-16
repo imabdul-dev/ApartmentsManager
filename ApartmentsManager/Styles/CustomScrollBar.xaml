@@ -2,7 +2,7 @@
 
     <SolidColorBrush x:Key="ScrollBarBackgroundBrush" Color="#CACACA" />
     <SolidColorBrush x:Key="ScrollBarPanningBackgroundBrush" Color="#4bd7b5" />
-    <!--<Style TargetType="ScrollBar">
+    <Style TargetType="ScrollBar">
         <Setter Property="MinWidth" Value="7" />
         <Setter Property="MinHeight" Value="7" />
         <Setter Property="Background" Value="Transparent" />
@@ -75,7 +75,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>-->
+    </Style>
 
     <Style TargetType="ScrollViewer">
         <Setter Property="HorizontalScrollMode" Value="Auto" />

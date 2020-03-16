@@ -33,7 +33,9 @@ namespace ApartmentsManager.ViewModels
             get
             {
                 //|| IsAvailable || IsUnavailable || IsReserved || MinFloors > 0 || MaxFloors > 0 || MinPrice > 0 || MaxPrice > 0
-                return !BlockA && !BlockB && !BlockC && !BlockD && !BlockE && !IsAvailable && !IsUnavailable && !IsReserved && !OneBedRoom && !TwoBedRooms && !ThreeBedRooms && !FourBedRooms;
+                return !BlockA && !BlockB && !BlockC && !BlockD && !BlockE && !IsAvailable && !IsUnavailable &&
+                       !IsReserved && !OneBedRoom && !TwoBedRooms && !ThreeBedRooms && !FourBedRooms
+                       && !(MinPrice > 100000 || MaxPrice < 1000000) && !(MinFloors > 0 || MaxPrice < MaxFloors);
             }
         }
 
@@ -49,7 +51,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _blockA = value;
                 OnPropertyChanged(nameof(BlockA));
-                FilterByBlock('A', value);
+                FilterApartments();
             }
         }
 
@@ -61,7 +63,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _blockB = value;
                 OnPropertyChanged(nameof(BlockB));
-                FilterByBlock('B', value);
+                FilterApartments();
             }
         }
 
@@ -73,7 +75,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _blockC = value;
                 OnPropertyChanged(nameof(BlockC));
-                FilterByBlock('C', value);
+                FilterApartments();
             }
         }
 
@@ -85,7 +87,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _blockD = value;
                 OnPropertyChanged(nameof(BlockD));
-                FilterByBlock('D', value);
+                FilterApartments();
             }
         }
 
@@ -97,7 +99,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _blockE = value;
                 OnPropertyChanged(nameof(BlockE));
-                FilterByBlock('E', value);
+                FilterApartments();
             }
         }
 
@@ -111,7 +113,9 @@ namespace ApartmentsManager.ViewModels
             get => _minPrice;
             set
             {
-                Set(ref _minPrice, value);
+                _minPrice = value;
+                OnPropertyChanged(nameof(MinPrice));
+                FilterApartments();
             }
         }
 
@@ -121,7 +125,9 @@ namespace ApartmentsManager.ViewModels
             get => _maxPrice;
             set
             {
-                Set(ref _maxPrice, value);
+                _maxPrice = value;
+                OnPropertyChanged(nameof(MaxPrice));
+                FilterApartments();
             }
         }
 
@@ -135,7 +141,9 @@ namespace ApartmentsManager.ViewModels
             get => _minfloors;
             set
             {
-                Set(ref _minfloors, value);
+                _minfloors = value;
+                OnPropertyChanged(nameof(MinFloors));
+                FilterApartments();
             }
         }
 
@@ -145,7 +153,9 @@ namespace ApartmentsManager.ViewModels
             get => _maxfloors;
             set
             {
-                Set(ref _maxfloors, value);
+                _maxfloors = value;
+                OnPropertyChanged(nameof(MaxFloors));
+                FilterApartments();
             }
         }
 
@@ -161,7 +171,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _isAvailable = value;
                 OnPropertyChanged(nameof(IsAvailable));
-                FilterByAvailibility(Status.Available, value);
+                FilterApartments();
             }
         }
 
@@ -173,7 +183,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _isUnavailable = value;
                 OnPropertyChanged(nameof(IsUnavailable));
-                FilterByAvailibility(Status.Unavailable, value);
+                FilterApartments();
             }
         }
 
@@ -185,7 +195,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _isReserved = value;
                 OnPropertyChanged(nameof(IsReserved));
-                FilterByAvailibility(Status.Reserved, value);
+                FilterApartments();
             }
         }
 
@@ -201,7 +211,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _oneBedRoom = value;
                 OnPropertyChanged(nameof(OneBedRoom));
-                FilterByRooms(1, value);
+                FilterApartments();
             }
         }
 
@@ -213,7 +223,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _twoBedRooms = value;
                 OnPropertyChanged(nameof(TwoBedRooms));
-                FilterByRooms(2, value);
+                FilterApartments();
             }
         }
 
@@ -225,7 +235,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _threeBedRooms = value;
                 OnPropertyChanged(nameof(ThreeBedRooms));
-                FilterByRooms(3, value);
+                FilterApartments();
             }
         }
 
@@ -237,7 +247,7 @@ namespace ApartmentsManager.ViewModels
             {
                 _fourBedRooms = value;
                 OnPropertyChanged(nameof(FourBedRooms));
-                FilterByRooms(4, value);
+                FilterApartments();
             }
         }
 
@@ -273,6 +283,10 @@ namespace ApartmentsManager.ViewModels
             var data = await SampleDataService.GetApartmentsDataAsync();
             _source = new List<SampleApartment>(data);
             Apartments = new List<SampleApartment>(_source);
+            MinPrice = 100000;
+            MaxPrice = 1000000;
+            MinFloors = 0;
+            MaxFloors = 100;
         }
 
         private void OnItemClick(SampleApartment clickedItem)
@@ -291,126 +305,164 @@ namespace ApartmentsManager.ViewModels
 
         private void FilterApartments()
         {
-            var apartmentsForFilter  = new List<SampleApartment>();
             if (IsReset)
             {
-                Apartments.Clear();
-                Apartments = _source;
+                Apartments = new List<SampleApartment>(_source);
             }
-            if ((BlockA || BlockB || BlockC || BlockD || BlockE || IsAvailable || IsUnavailable || IsReserved || MinFloors > 0 || MaxFloors > 0 || MinPrice > 0 || MaxPrice > 0) && !IsReset)
+            else
             {
+                var apartments1 = new List<SampleApartment>();
+                var apartments2 = new List<SampleApartment>();
+                var apartments3 = new List<SampleApartment>();
+                var isfiltered = false;
+
+                //Filter by blocks
                 if (BlockA)
                 {
-                    var items = _source.Where(x => x.Block == 'A').ToList();
-                    apartmentsForFilter.AddRange(items);
+                    var items = _source.Where(x => x.Block == 'A');
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
                 }
-                //else
-                //{
-                //    var removeItems = _source.Where(x => x.Block == 'A');
-                //    var apps = new List<SampleApartment>(Apartments);
-                //    foreach (var item in removeItems)
-                //    {
-                //        apps.Remove(item);
-                //    }
-
-                //    Apartments = apps;
-                //}
-
-                //if (BlockB) Apartments.AddRange(_source.Where(x => x.Block == 'B'));
-                //if (BlockC) Apartments.AddRange(_source.Where(x => x.Block == 'C'));
-                //if (BlockD) Apartments.AddRange(_source.Where(x => x.Block == 'D'));
-                //if (BlockE) Apartments.AddRange(_source.Where(x => x.Block == 'E'));
-            }
-            else
-            {
-                Apartments.Clear();
-                Apartments = _source;
-            }
-        }
-
-        private void FilterByBlock(char block, bool isFilter)
-        {
-            if (IsReset)
-            {
-                Apartments = new List<SampleApartment>(_source);
-            }
-            else if (isFilter)
-            {
-                var apartmentsForFilter = Apartments.Count == _source.Count ? new List<SampleApartment>() : new List<SampleApartment>(Apartments);
-
-                var items = _source.Where(x => x.Block == block).ToList();
-                if (items.Count > 0)
+                if (BlockB)
                 {
-                    apartmentsForFilter.AddRange(items);
-                    Apartments = new List<SampleApartment>(apartmentsForFilter.OrderBy(x => x.Block));
+                    var items = _source.Where(x => x.Block == 'B');
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
                 }
-            }
-            else
-            {
-                var apartmentsForFilter = new List<SampleApartment>();
-                var items = Apartments.Where(x => x.Block != block).ToList();
-                if (items.Count > 0)
+                if (BlockC)
                 {
-                    apartmentsForFilter.AddRange(items);
-                    Apartments = new List<SampleApartment>(apartmentsForFilter.OrderBy(x => x.Block));
+                    var items = _source.Where(x => x.Block == 'C');
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
                 }
-            }
-        }
-
-        private void FilterByAvailibility(Status availibilityStatus, bool isFilter)
-        {
-            if (IsReset)
-            {
-                Apartments = new List<SampleApartment>(_source);
-            }
-            else if (isFilter)
-            {
-                var apartmentsForFilter = Apartments.Count == _source.Count ? new List<SampleApartment>() : new List<SampleApartment>(Apartments);
-
-                var items = _source.Where(x => x.Status == availibilityStatus).ToList();
-                if (items.Count > 0)
+                if (BlockD)
                 {
-                    apartmentsForFilter.AddRange(items);
-                    Apartments = new List<SampleApartment>(apartmentsForFilter.OrderBy(x => x.Block));
+                    var items = _source.Where(x => x.Block == 'D');
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
                 }
-            }
-            else
-            {
-                var apartmentsForFilter = new List<SampleApartment>();
-                var items = Apartments.Where(x => x.Status != availibilityStatus).ToList();
-                if (items.Count > 0)
+                if (BlockE)
                 {
-                    apartmentsForFilter.AddRange(items);
-                    Apartments = new List<SampleApartment>(apartmentsForFilter.OrderBy(x => x.Block));
+                    var items = _source.Where(x => x.Block == 'E');
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
                 }
-            }
-        }
 
-        private void FilterByRooms(int rooms, bool isFilter)
-        {
-            if (IsReset)
-            {
-                Apartments = new List<SampleApartment>(_source);
-            }
-            else if (isFilter)
-            {
-                var apartmentsForFilter = Apartments.Count == _source.Count ? new List<SampleApartment>() : new List<SampleApartment>(Apartments);
-
-                var items = _source.Where(x => x.Bedrooms == rooms).ToList();
-                if (items.Count > 0)
+                //Filter by availibility
+                if (IsAvailable)
                 {
-                    apartmentsForFilter.AddRange(items);
-                    Apartments = new List<SampleApartment>(apartmentsForFilter.OrderBy(x => x.Block));
+                    var items = _source.Where(x => x.Status == Status.Available);
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
                 }
-            }
-            else
-            {
-                var apartmentsForFilter = new List<SampleApartment>();
-                var items = Apartments.Where(x => x.Bedrooms != rooms).ToList();
-                if (items.Count > 0)
+                if (IsUnavailable)
                 {
-                    apartmentsForFilter.AddRange(items);
-                    Apartments = new List<SampleApartment>(apartmentsForFilter.OrderBy(x => x.Block));
+                    var items = _source.Where(x => x.Status == Status.Unavailable);
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
+                }
+                if (IsReserved)
+                {
+                    var items = _source.Where(x => x.Status == Status.Reserved);
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
+                }
+
+                //Filter by rooms
+                if (OneBedRoom)
+                {
+                    var items = _source.Where(x => x.Bedrooms == 1);
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
+                }
+                if (TwoBedRooms)
+                {
+                    var items = _source.Where(x => x.Bedrooms == 2);
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
+                }
+                if (ThreeBedRooms)
+                {
+                    var items = _source.Where(x => x.Bedrooms == 3);
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
+                }
+                if (FourBedRooms)
+                {
+                    var items = _source.Where(x => x.Bedrooms == 4);
+                    if (items.Any())
+                    {
+                        apartments1.AddRange(items);
+                        isfiltered = true;
+                    }
+                }
+
+                if (!isfiltered)
+                {
+                    apartments1 = new List<SampleApartment>(_source);
+                }
+
+                //Filter by price
+                if (MinPrice > 100000 || MaxPrice < 1000000)
+                {
+                    var priceFilter = apartments1.Where(x => x.Price >= MinPrice && x.Price <= MaxPrice);
+                    if (priceFilter.Any())
+                    {
+                        apartments2.AddRange(priceFilter);
+                    }
+                }
+                else
+                {
+                    apartments2 = !isfiltered ? new List<SampleApartment>(_source) : new List<SampleApartment>(apartments1);
+                }
+
+                //Filter by rooms
+                if (MinFloors > 0 || MaxFloors < 100)
+                {
+                    var floorsFilter = apartments2.Where(x => x.Floor >= MinFloors && x.Floor <= MaxFloors);
+                    if (floorsFilter.Any())
+                    {
+                        apartments3.AddRange(floorsFilter);
+                    }
+
+                    Apartments = new List<SampleApartment>(apartments3.OrderBy(x => x.Block));
+                }
+                else
+                {
+                    Apartments = new List<SampleApartment>(apartments2.OrderBy(x => x.Block));
                 }
             }
         }
