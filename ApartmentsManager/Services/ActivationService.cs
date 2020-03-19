@@ -9,19 +9,14 @@ using ApartmentsManager.Activation;
 
 namespace ApartmentsManager.Services
 {
-    // For more information on understanding and extending activation flow see
-    // https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService
     {
-        private readonly App _app;
         private readonly Type _defaultNavItem;
-        private Lazy<UIElement> _shell;
-
         private object _lastActivationArgs;
+        private readonly Lazy<UIElement> _shell;
 
-        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
+        public ActivationService(Type defaultNavItem, Lazy<UIElement> shell = null)
         {
-            _app = app;
             _shell = shell;
             _defaultNavItem = defaultNavItem;
         }

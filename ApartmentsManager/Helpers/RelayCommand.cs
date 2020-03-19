@@ -11,12 +11,7 @@ namespace ApartmentsManager.Helpers
 
         public event EventHandler CanExecuteChanged;
 
-        public RelayCommand(Action execute)
-            : this(execute, null)
-        {
-        }
-
-        public RelayCommand(Action execute, Func<bool> canExecute)
+        public RelayCommand(Action execute, Func<bool> canExecute = null)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;

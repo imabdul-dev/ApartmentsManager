@@ -1,15 +1,29 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Check Box Colors  -->
     <SolidColorBrush x:Key="ThemeControlForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}" />
     <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundChecked" Color="#4bd7b5" />
     <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillChecked" Color="#4bd7b5" />
     <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver" Color="#4bd7b5" />
     <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundCheckedPointerOver" Color="#4bd7b5" />
+
+    <!--  Radio Button Colors  -->
     <SolidColorBrush x:Key="RadioButtonCheckGlyphFill" Color="#4bd7b5" />
     <SolidColorBrush x:Key="RadioButtonCheckGlyphFillPointerOver" Color="#4bd7b5" />
 
+    <!--  Scroll Bar Colors  -->
     <SolidColorBrush x:Key="ScrollBarThumbFill" Color="#4bd7b5" />
     <SolidColorBrush x:Key="ScrollBarThumbFillPointerOver" Color="#4bd7b5" />
     <SolidColorBrush x:Key="ScrollBarThumbFillPressed" Color="#4bd7b5" />
     <SolidColorBrush x:Key="ScrollBarThumbFillDisabled" Color="Pink" />
+    <SolidColorBrush x:Key="ScrollBarBackgroundBrush" Color="#CACACA" />
+    <SolidColorBrush x:Key="ScrollBarPanningBackgroundBrush" Color="#4bd7b5" />
+
+    <!--  Button Mouse Hover Color  -->
+    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#4bd7b5" />
+
+    <!--  Application Colors  -->
+    <SolidColorBrush x:Key="PrimaryColor" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="SecondaryColor" Color="#525252" />
 
 </ResourceDictionary>

@@ -8,15 +8,15 @@
         <Setter Property="UseSystemFocusVisuals" Value="True" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="Background" Value="{ThemeResource SliderThumbBackground}" />
-        <Setter Property="Height" Value="15" />
-        <Setter Property="Width" Value="15" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Width" Value="30" />
         <Setter Property="FocusVisualMargin" Value="-14,-6,-14,-6" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
                     <Ellipse
-                        Width="15"
-                        Height="15"
+                        Width="30"
+                        Height="30"
                         Fill="White"
                         Stroke="#525252"
                         StrokeThickness="2" />
@@ -34,7 +34,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:RangeSelector">
-                    <Grid x:Name="ControlGrid" Height="20">
+                    <Grid x:Name="ControlGrid" Height="50">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="300" />
@@ -44,25 +44,26 @@
                         </Grid.ColumnDefinitions>
                         <Rectangle
                             Grid.Column="0"
-                            Width="4"
-                            Height="40"
-                            Margin="0,0,-13,0"
+                            Width="6"
+                            Height="45"
+                            Margin="20,0,0,0"
                             Fill="{TemplateBinding Background}" />
                         <Border
                             x:Name="OutOfRangeContentContainer"
                             Grid.Column="1"
-                            Padding="10,0,10,0"
+                            Width="290"
+                            HorizontalAlignment="Left"
                             Background="Transparent">
                             <Rectangle
                                 x:Name="BackgroundElement"
-                                Height="2"
+                                Height="4"
                                 Fill="{TemplateBinding Background}" />
                         </Border>
                         <Rectangle
                             Grid.Column="2"
-                            Width="4"
-                            Height="40"
-                            Margin="-13,0,0,0"
+                            Width="6"
+                            Height="45"
+                            Margin="-20,0,0,0"
                             Fill="{TemplateBinding Background}" />
                         <Canvas
                             x:Name="ContainerCanvas"
@@ -70,10 +71,9 @@
                             Background="Transparent">
                             <Rectangle
                                 x:Name="ActiveRectangle"
-                                Height="2"
+                                Height="4"
                                 Margin="10,0,0,0"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
                                 Fill="{TemplateBinding Foreground}" />
                             <Grid
                                 x:Name="ToolTip"
@@ -103,14 +103,15 @@
                             </Grid>
                             <Thumb
                                 x:Name="MinThumb"
-                                Margin="0,2,0,0"
+                                Margin="-18,10,0,0"
+                                VerticalAlignment="Center"
                                 AutomationProperties.Name="Min thumb"
                                 IsTabStop="True"
                                 Style="{StaticResource SliderThumbStyle}"
                                 TabIndex="0" />
                             <Thumb
                                 x:Name="MaxThumb"
-                                Margin="0,2,0,0"
+                                Margin="5,10,0,0"
                                 AutomationProperties.Name="Max thumb"
                                 IsTabStop="True"
                                 Style="{StaticResource SliderThumbStyle}"

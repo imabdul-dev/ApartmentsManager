@@ -33,7 +33,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             CharacterSpacing="-100"
-            FontFamily="{StaticResource HelveticaNeue}"
+            FontFamily="{StaticResource HelveticaNeue-Bold}"
             FontSize="52"
             FontWeight="Bold"
             Text="Floorplan" />

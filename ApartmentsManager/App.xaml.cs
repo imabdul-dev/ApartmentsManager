@@ -37,7 +37,7 @@ namespace ApartmentsManager
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(Views.ContentGridPage), new Lazy<UIElement>(CreateShell));
+            return new ActivationService(typeof(Views.ContentGridPage), new Lazy<UIElement>(CreateShell));
         }
 
         private static UIElement CreateShell()

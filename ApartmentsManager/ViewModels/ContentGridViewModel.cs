@@ -259,6 +259,9 @@ namespace ApartmentsManager.ViewModels
 
         #region Commands
 
+        private ICommand _itemClickCommand;
+        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<int>(OnItemClick));
+
         private ICommand _resetFilterApartmentsCommand;
         public ICommand ResetFilterApartmentsCommand => _resetFilterApartmentsCommand ?? (_resetFilterApartmentsCommand = new RelayCommand(ResetFilterApartments));
 
@@ -281,6 +284,11 @@ namespace ApartmentsManager.ViewModels
             Apartments.Clear();
 
             var data = await SampleDataService.GetApartmentsDataAsync();
+            foreach (var apartment in data)
+            {
+                apartment.ItemClickCommand = ItemClickCommand;
+            }
+
             _source = new List<SampleApartment>(data);
             Apartments = new List<SampleApartment>(_source);
             MinPrice = 100000;

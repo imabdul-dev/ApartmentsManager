@@ -1,4 +1,6 @@
-﻿namespace ApartmentsManager.Models
+﻿using System.Windows.Input;
+
+namespace ApartmentsManager.Models
 {
     public class SampleApartment
     {
@@ -13,6 +15,7 @@
         public int SqFt { get; set; }
         public Status Status { get; set; }
         public int Price { get; set; }
+        public ICommand ItemClickCommand { get; set; }
 
         public override string ToString()
         {

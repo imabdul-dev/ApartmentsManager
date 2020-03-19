@@ -4,11 +4,11 @@
         <Setter Property="Background" Value="{ThemeResource CheckBoxBackgroundUnchecked}" />
         <Setter Property="Foreground" Value="{ThemeResource CheckBoxForegroundUnchecked}" />
         <Setter Property="BorderBrush" Value="{ThemeResource CheckBoxBorderBrushUnchecked}" />
-        <Setter Property="Padding" Value="5,5,0,0" />
+        <Setter Property="Padding" Value="7,0,0,0" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
         <Setter Property="MinWidth" Value="40" />
@@ -25,19 +25,19 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="30" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Grid Height="32" VerticalAlignment="Top">
+                        <Grid Height="64" VerticalAlignment="Top">
                             <Border
-                                Width="15"
-                                Height="15"
+                                Width="30"
+                                Height="30"
                                 BorderBrush="Black"
                                 BorderThickness="1.5">
                                 <Rectangle
                                     x:Name="NormalRectangle"
-                                    Width="15"
-                                    Height="15"
+                                    Width="30"
+                                    Height="30"
                                     Fill="{ThemeResource CheckBoxCheckBackgroundFillUnchecked}"
                                     Stroke="{ThemeResource CheckBoxCheckBackgroundStrokeUnchecked}"
                                     StrokeThickness="0"
@@ -46,7 +46,7 @@
                             <FontIcon
                                 x:Name="CheckGlyph"
                                 FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                FontSize="15"
+                                FontSize="30"
                                 Foreground="{ThemeResource SystemControlHighlightAltChromeWhiteBrush}"
                                 Glyph="&#xE73C;"
                                 Opacity="0" />
@@ -407,11 +407,11 @@
         <Setter Property="Background" Value="{ThemeResource CheckBoxBackgroundUnchecked}" />
         <Setter Property="Foreground" Value="{ThemeResource CheckBoxForegroundUnchecked}" />
         <Setter Property="BorderBrush" Value="{ThemeResource CheckBoxBorderBrushUnchecked}" />
-        <Setter Property="Padding" Value="5,5,0,0" />
+        <Setter Property="Padding" Value="7,0,0,0" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
         <Setter Property="MinWidth" Value="40" />
@@ -428,27 +428,31 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="35" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Grid Height="32" VerticalAlignment="Top">
-                            <Ellipse
-                                Width="15"
-                                Height="15"
-                                Stroke="Black"
-                                StrokeThickness="1.5" />
-                            <Ellipse
-                                x:Name="NormalRectangle"
-                                Width="15"
-                                Height="15"
-                                Fill="{ThemeResource CheckBoxCheckBackgroundFillUnchecked}"
-                                Stroke="{ThemeResource CheckBoxCheckBackgroundStrokeUnchecked}"
-                                StrokeThickness="0"
-                                UseLayoutRounding="False" />
+                        <Grid Height="64" VerticalAlignment="Top">
+                            <Border
+                                Width="35"
+                                Height="35"
+                                BorderBrush="Black"
+                                BorderThickness="2"
+                                CornerRadius="30">
+                                <Rectangle
+                                    x:Name="NormalRectangle"
+                                    Width="30"
+                                    Height="30"
+                                    Fill="{ThemeResource CheckBoxCheckBackgroundFillUnchecked}"
+                                    RadiusX="30"
+                                    RadiusY="30"
+                                    Stroke="{ThemeResource CheckBoxCheckBackgroundStrokeUnchecked}"
+                                    StrokeThickness="0"
+                                    UseLayoutRounding="False" />
+                            </Border>
                             <FontIcon
                                 x:Name="CheckGlyph"
                                 FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                FontSize="15"
+                                FontSize="30"
                                 Foreground="{ThemeResource SystemControlHighlightAltChromeWhiteBrush}"
                                 Glyph="&#xF127;"
                                 Opacity="0" />
