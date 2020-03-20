@@ -6,6 +6,11 @@
         <ResourceDictionary Source="CustomRangeSelector.xaml" />
         <ResourceDictionary Source="BorderlessGridViewItem.xaml" />
         <ResourceDictionary Source="CustomScrollBar.xaml" />
+        <ResourceDictionary Source="_Colors.xaml" />
+        <ResourceDictionary Source="_Thickness.xaml" />
+        <ResourceDictionary Source="TextBlock.xaml" />
+        <ResourceDictionary Source="Page.xaml" />
+        <ResourceDictionary Source="CustomFontFamily.xaml" />
 
     </ResourceDictionary.MergedDictionaries>
 

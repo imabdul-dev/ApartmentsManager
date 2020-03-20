@@ -2,6 +2,7 @@
 
     <!--  Check Box Colors  -->
     <SolidColorBrush x:Key="ThemeControlForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}" />
+    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#edede4" />
     <SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundChecked" Color="#4bd7b5" />
     <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillChecked" Color="#4bd7b5" />
     <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver" Color="#4bd7b5" />
