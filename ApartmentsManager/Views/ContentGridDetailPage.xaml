@@ -11,8 +11,8 @@
         <helpers:CurrencyConverter x:Key="CurrencyConverter" />
     </Page.Resources>
 
-    <ScrollViewer>
-        <Grid>
+    <Viewbox Margin="-5,0,0,0">
+        <Grid x:Name="mainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -34,6 +34,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
+                Margin="0,42,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 CharacterSpacing="-85"
@@ -46,12 +47,12 @@
                 Grid.Column="2"
                 Width="725"
                 Height="725"
-                Margin="0,118,30,148"
+                Margin="0,119,165,550"
                 Source="ms-appx:///Assets/Building.png" />
             <Grid
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="101,89,0,148">
+                Margin="106,114,253,550">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
@@ -59,7 +60,7 @@
                 <TextBlock
                     Grid.Row="0"
                     CharacterSpacing="-100"
-                    FontSize="90"
+                    FontSize="89"
                     FontWeight="Bold"
                     Text="{x:Bind ViewModel.ItemDetail}" />
                 <Button
@@ -75,6 +76,6 @@
                     Foreground="White" />
             </Grid>
         </Grid>
-    </ScrollViewer>
+    </Viewbox>
 
 </Page>

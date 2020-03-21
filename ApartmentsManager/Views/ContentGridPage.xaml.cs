@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml.Navigation;
+﻿using Windows.Graphics.Display;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Navigation;
 using ApartmentsManager.ViewModels;
 
 namespace ApartmentsManager.Views
@@ -10,6 +12,13 @@ namespace ApartmentsManager.Views
         public ContentGridPage()
         {
             InitializeComponent();
+            var applicationView = ApplicationView.GetForCurrentView();
+            var displayInformation = DisplayInformation.GetForCurrentView();
+            var bounds = applicationView.VisibleBounds;
+            var scale = displayInformation.RawPixelsPerViewPixel;
+
+            mainGrid.Width = bounds.Width * scale;
+            mainGrid.Height = bounds.Height * scale;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

@@ -8,8 +8,9 @@ namespace ApartmentsManager.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var cf = new CurrencyFormatter("GBP") {Mode = CurrencyFormatterMode.UseSymbol, IsGrouped = true};
-            return cf.FormatInt(System.Convert.ToUInt32(value));
+            var cf = new CurrencyFormatter("GBP") {Mode = CurrencyFormatterMode.UseSymbol, IsGrouped = true, FractionDigits = 0};
+            return cf.Format(System.Convert.ToUInt32(value));
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

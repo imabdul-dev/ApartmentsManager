@@ -37,7 +37,7 @@
                     <Grid x:Name="ControlGrid" Height="50">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition Width="408" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                             <ColumnDefinition />
@@ -51,7 +51,7 @@
                         <Border
                             x:Name="OutOfRangeContentContainer"
                             Grid.Column="1"
-                            Width="290"
+                            Width="400"
                             HorizontalAlignment="Left"
                             Background="Transparent">
                             <Rectangle

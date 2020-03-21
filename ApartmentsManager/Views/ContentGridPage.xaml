@@ -18,8 +18,8 @@
         <helpers:CurrencyConverter x:Key="CurrencyConverter" />
     </Page.Resources>
 
-    <ScrollViewer>
-        <Grid ScrollViewer.HorizontalScrollBarVisibility="Auto">
+    <Viewbox Margin="-5,0,0,0">
+        <Grid Name="mainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -47,282 +47,290 @@
                 FontSize="52"
                 FontWeight="Bold"
                 Text="Full Listings" />
-            <Grid
+            <Viewbox
                 Grid.Row="1"
                 Grid.RowSpan="2"
-                Grid.Column="1"
-                Margin="0,0,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel
-                    Grid.Column="0"
-                    Margin="0,40,0,0"
-                    Padding="10,0,0,0">
-                    <Border
-                        Width="100"
-                        Height="38"
-                        HorizontalAlignment="Left"
-                        Background="{StaticResource SecondaryColor}">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontFamily="{StaticResource HelveticaNeue-Bold}"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Foreground="White"
-                            Text="BLOCK" />
-                    </Border>
-                    <StackPanel Margin="0,28,0,0" Orientation="Horizontal">
-                        <CheckBox
-                            Margin="5,0,20,5"
-                            Content="A"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            FontSize="22"
-                            IsChecked="{x:Bind ViewModel.BlockA, Mode=TwoWay}"
-                            Style="{StaticResource DefaultCheckBoxStyle}" />
-                        <CheckBox
-                            Margin="0,0,20,5"
-                            Content="B"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            FontSize="22"
-                            IsChecked="{x:Bind ViewModel.BlockB, Mode=TwoWay}"
-                            Style="{StaticResource DefaultCheckBoxStyle}" />
-                        <CheckBox
-                            Margin="0,0,20,5"
-                            Content="C"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            FontSize="22"
-                            IsChecked="{x:Bind ViewModel.BlockC, Mode=TwoWay}"
-                            Style="{StaticResource DefaultCheckBoxStyle}" />
-                        <CheckBox
-                            Margin="0,0,20,5"
-                            Content="D"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            FontSize="22"
-                            IsChecked="{x:Bind ViewModel.BlockD, Mode=TwoWay}"
-                            Style="{StaticResource DefaultCheckBoxStyle}" />
-                        <CheckBox
-                            Margin="0,0,0,5"
-                            Content="E"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            FontSize="22"
-                            IsChecked="{x:Bind ViewModel.BlockE, Mode=TwoWay}"
-                            Style="{StaticResource DefaultCheckBoxStyle}" />
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Margin="0,41,0,0"
-                    Padding="10,0,0,0">
-                    <Border
-                        Width="100"
-                        Height="38"
-                        HorizontalAlignment="Left"
-                        Background="{StaticResource SecondaryColor}">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontFamily="{StaticResource HelveticaNeue-Bold}"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Foreground="White"
-                            Text="PRICE" />
-                    </Border>
-                    <controls:RangeSelector
-                        Name="priceSlider"
-                        Margin="-18,33,0,0"
-                        VerticalAlignment="Top"
-                        behaviors:SliderRangeMaxBindingBehavior.RangeMax="{x:Bind ViewModel.MaxPrice, Mode=TwoWay}"
-                        behaviors:SliderRangeMinBindingBehavior.RangeMin="{x:Bind ViewModel.MinPrice, Mode=TwoWay}"
-                        Background="{StaticResource SecondaryColor}"
-                        Foreground="{StaticResource PrimaryColor}"
-                        Maximum="1000000"
-                        Minimum="100000" />
-                    <Grid
-                        Width="{Binding ElementName=priceSlider, Path=ActualWidth}"
-                        Margin="0,15,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="250" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            FontSize="20"
-                            Text="{Binding ElementName=priceSlider, Path=RangeMin, Converter={StaticResource CurrencyConverter}}" />
-                        <TextBlock
-                            Grid.Column="1"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            FontSize="20"
-                            Text="{Binding ElementName=priceSlider, Path=RangeMax, Converter={StaticResource CurrencyConverter}}" />
-                    </Grid>
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Margin="0,42,0,0"
-                    Padding="10,0,0,0">
-                    <Border
-                        Width="100"
-                        Height="38"
-                        HorizontalAlignment="Left"
-                        Background="{StaticResource SecondaryColor}">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontFamily="{StaticResource HelveticaNeue-Bold}"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Foreground="White"
-                            Text="FLOORS" />
-                    </Border>
-                    <controls:RangeSelector
-                        Name="floorsSlider"
-                        Margin="-18,39,0,0"
-                        VerticalAlignment="Top"
-                        behaviors:SliderRangeMaxBindingBehavior.RangeMax="{x:Bind ViewModel.MaxFloors, Mode=TwoWay}"
-                        behaviors:SliderRangeMinBindingBehavior.RangeMin="{x:Bind ViewModel.MinFloors, Mode=TwoWay}"
-                        Background="{StaticResource SecondaryColor}"
-                        Foreground="{StaticResource PrimaryColor}"
-                        Maximum="100"
-                        Minimum="0" />
-                    <Grid
-                        Width="{Binding ElementName=floorsSlider, Path=ActualWidth}"
-                        Margin="0,12,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            FontSize="20"
-                            Text="{Binding ElementName=floorsSlider, Path=RangeMin}" />
-                        <TextBlock
-                            Grid.Column="1"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            FontSize="20"
-                            Text="{Binding ElementName=floorsSlider, Path=RangeMax}" />
-                    </Grid>
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="3"
-                    Margin="0,49,0,0"
-                    Padding="10,0,0,0"
-                    Orientation="Horizontal">
-                    <StackPanel Margin="0,0,0,20">
+                Grid.Column="1">
+                <Grid
+                    Margin="0,0,0,0"
+                    extensions:ScrollViewerExtensions.EnableMiddleClickScrolling="True"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Grid.Column="0"
+                        Margin="0,40,0,0"
+                        Padding="10,0,0,0">
                         <Border
-                            Width="100"
-                            Height="38"
-                            Margin="0,0,0,31"
+                            Width="91"
+                            Height="35"
                             HorizontalAlignment="Left"
                             Background="{StaticResource SecondaryColor}">
                             <TextBlock
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontFamily="{StaticResource HelveticaNeue-Bold}"
-                                FontSize="15"
+                                FontSize="13"
                                 FontWeight="Bold"
                                 Foreground="White"
-                                Text="STATUS" />
+                                Text="BLOCK" />
                         </Border>
-                        <CheckBox
-                            Margin="0,0,0,16"
-                            Content="Available"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            IsChecked="{x:Bind ViewModel.IsAvailable, Mode=TwoWay}"
-                            Style="{StaticResource DefaultCheckBoxStyle}" />
-                        <CheckBox
-                            Margin="0,0,0,16"
-                            Content="Unavailable"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            IsChecked="{x:Bind ViewModel.IsUnavailable, Mode=TwoWay}"
-                            Style="{StaticResource DefaultCheckBoxStyle}" />
-                        <CheckBox
-                            Margin="0,0,0,16"
-                            Content="Reserved"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            IsChecked="{x:Bind ViewModel.IsReserved, Mode=TwoWay}"
-                            Style="{StaticResource DefaultCheckBoxStyle}" />
+                        <StackPanel Margin="0,35,0,0" Orientation="Horizontal">
+                            <CheckBox
+                                Margin="5,0,25,5"
+                                Content="A"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                FontSize="22"
+                                IsChecked="{x:Bind ViewModel.BlockA, Mode=TwoWay}"
+                                Style="{StaticResource DefaultCheckBoxStyle}" />
+                            <CheckBox
+                                Margin="0,0,25,5"
+                                Content="B"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                FontSize="22"
+                                IsChecked="{x:Bind ViewModel.BlockB, Mode=TwoWay}"
+                                Style="{StaticResource DefaultCheckBoxStyle}" />
+                            <CheckBox
+                                Margin="0,0,25,5"
+                                Content="C"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                FontSize="22"
+                                IsChecked="{x:Bind ViewModel.BlockC, Mode=TwoWay}"
+                                Style="{StaticResource DefaultCheckBoxStyle}" />
+                            <CheckBox
+                                Margin="0,0,25,5"
+                                Content="D"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                FontSize="22"
+                                IsChecked="{x:Bind ViewModel.BlockD, Mode=TwoWay}"
+                                Style="{StaticResource DefaultCheckBoxStyle}" />
+                            <CheckBox
+                                Margin="0,0,0,5"
+                                Content="E"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                FontSize="22"
+                                IsChecked="{x:Bind ViewModel.BlockE, Mode=TwoWay}"
+                                Style="{StaticResource DefaultCheckBoxStyle}" />
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Margin="100,0,0,0">
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,52,0,0"
+                        Padding="10,0,0,0">
                         <Border
-                            Width="100"
-                            Height="38"
-                            Margin="0,0,0,31"
+                            Width="91"
+                            Height="35"
                             HorizontalAlignment="Left"
                             Background="{StaticResource SecondaryColor}">
                             <TextBlock
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontFamily="{StaticResource HelveticaNeue-Bold}"
-                                FontSize="15"
+                                FontSize="13"
                                 FontWeight="Bold"
                                 Foreground="White"
-                                Text="BEDROOMS" />
+                                Text="PRICE" />
                         </Border>
-                        <CheckBox
-                            Margin="0,0,0,16"
-                            Content="1 Bedroom"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            IsChecked="{x:Bind ViewModel.OneBedRoom, Mode=TwoWay}"
-                            Style="{StaticResource RoomCheckBoxStyle}" />
-                        <CheckBox
-                            Margin="0,0,0,16"
-                            Content="2 Bedroom"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            IsChecked="{x:Bind ViewModel.TwoBedRooms, Mode=TwoWay}"
-                            Style="{StaticResource RoomCheckBoxStyle}" />
-                        <CheckBox
-                            Margin="0,0,0,16"
-                            Content="3 Bedroom"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            IsChecked="{x:Bind ViewModel.ThreeBedRooms, Mode=TwoWay}"
-                            Style="{StaticResource RoomCheckBoxStyle}" />
-                        <CheckBox
-                            Margin="0,0,0,16"
-                            Content="4 Bedroom"
-                            FontFamily="{StaticResource HelveticaNeue-Medium}"
-                            IsChecked="{x:Bind ViewModel.FourBedRooms, Mode=TwoWay}"
-                            Style="{StaticResource RoomCheckBoxStyle}" />
+                        <controls:RangeSelector
+                            Name="priceSlider"
+                            Margin="-18,35,0,0"
+                            VerticalAlignment="Top"
+                            behaviors:SliderRangeMaxBindingBehavior.RangeMax="{x:Bind ViewModel.MaxPrice, Mode=TwoWay}"
+                            behaviors:SliderRangeMinBindingBehavior.RangeMin="{x:Bind ViewModel.MinPrice, Mode=TwoWay}"
+                            Background="{StaticResource SecondaryColor}"
+                            Foreground="{StaticResource PrimaryColor}"
+                            Maximum="1000000"
+                            Minimum="100000" />
+                        <Grid
+                            Width="{Binding ElementName=priceSlider, Path=ActualWidth}"
+                            Margin="0,15,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="320" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                FontSize="20"
+                                Text="{Binding ElementName=priceSlider, Path=RangeMin, Converter={StaticResource CurrencyConverter}}" />
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                FontSize="20"
+                                Text="{Binding ElementName=priceSlider, Path=RangeMax, Converter={StaticResource CurrencyConverter}}" />
+                        </Grid>
                     </StackPanel>
-                </StackPanel>
-                <Button
-                    Grid.Row="4"
-                    Width="125"
-                    Height="45"
-                    Margin="0,10,0,0"
-                    Padding="10,0,0,0"
-                    Background="{StaticResource PrimaryColor}"
-                    Command="{x:Bind ViewModel.ResetFilterApartmentsCommand}"
-                    Content="Reset Filters"
-                    CornerRadius="2"
-                    FontFamily="{StaticResource HelveticaNeue-Bold}"
-                    FontSize="12"
-                    Foreground="White" />
-            </Grid>
+                    <StackPanel
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0,52,0,0"
+                        Padding="10,0,0,0">
+                        <Border
+                            Width="105"
+                            Height="35"
+                            HorizontalAlignment="Left"
+                            Background="{StaticResource SecondaryColor}">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource HelveticaNeue-Bold}"
+                                FontSize="13"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="FLOORS" />
+                        </Border>
+                        <controls:RangeSelector
+                            Name="floorsSlider"
+                            Margin="-18,35,0,0"
+                            VerticalAlignment="Top"
+                            behaviors:SliderRangeMaxBindingBehavior.RangeMax="{x:Bind ViewModel.MaxFloors, Mode=TwoWay}"
+                            behaviors:SliderRangeMinBindingBehavior.RangeMin="{x:Bind ViewModel.MinFloors, Mode=TwoWay}"
+                            Background="{StaticResource SecondaryColor}"
+                            Foreground="{StaticResource PrimaryColor}"
+                            Maximum="100"
+                            Minimum="0" />
+                        <Grid
+                            Width="{Binding ElementName=floorsSlider, Path=ActualWidth}"
+                            Margin="0,12,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                FontSize="20">
+                                <Run>Floor:</Run>
+                                <Run Text="{Binding ElementName=floorsSlider, Path=RangeMin}" />
+                            </TextBlock>
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                FontSize="20">
+                                <Run>Floor:</Run>
+                                <Run Text="{Binding ElementName=floorsSlider, Path=RangeMax}" />
+                            </TextBlock>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="3"
+                        Margin="0,49,0,0"
+                        Padding="10,0,0,0"
+                        Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,20">
+                            <Border
+                                Width="105"
+                                Height="35"
+                                Margin="0,0,0,42"
+                                HorizontalAlignment="Left"
+                                Background="{StaticResource SecondaryColor}">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontFamily="{StaticResource HelveticaNeue-Bold}"
+                                    FontSize="13"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="STATUS" />
+                            </Border>
+                            <CheckBox
+                                Margin="0,0,0,33"
+                                Content="Available"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                IsChecked="{x:Bind ViewModel.IsAvailable, Mode=TwoWay}"
+                                Style="{StaticResource DefaultCheckBoxStyle}" />
+                            <CheckBox
+                                Margin="0,0,0,33"
+                                Content="Unavailable"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                IsChecked="{x:Bind ViewModel.IsUnavailable, Mode=TwoWay}"
+                                Style="{StaticResource DefaultCheckBoxStyle}" />
+                            <CheckBox
+                                Margin="0,0,0,33"
+                                Content="Reserved"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                IsChecked="{x:Bind ViewModel.IsReserved, Mode=TwoWay}"
+                                Style="{StaticResource DefaultCheckBoxStyle}" />
+                        </StackPanel>
+                        <StackPanel Margin="100,0,0,0">
+                            <Border
+                                Width="137"
+                                Height="35"
+                                Margin="0,0,0,42"
+                                HorizontalAlignment="Left"
+                                Background="{StaticResource SecondaryColor}">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontFamily="{StaticResource HelveticaNeue-Bold}"
+                                    FontSize="13"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="BEDROOMS" />
+                            </Border>
+                            <CheckBox
+                                Margin="0,0,0,33"
+                                Content="1 Bedroom"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                IsChecked="{x:Bind ViewModel.OneBedRoom, Mode=TwoWay}"
+                                Style="{StaticResource RoomCheckBoxStyle}" />
+                            <CheckBox
+                                Margin="0,0,0,33"
+                                Content="2 Bedroom"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                IsChecked="{x:Bind ViewModel.TwoBedRooms, Mode=TwoWay}"
+                                Style="{StaticResource RoomCheckBoxStyle}" />
+                            <CheckBox
+                                Margin="0,0,0,33"
+                                Content="3 Bedroom"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                IsChecked="{x:Bind ViewModel.ThreeBedRooms, Mode=TwoWay}"
+                                Style="{StaticResource RoomCheckBoxStyle}" />
+                            <CheckBox
+                                Margin="0,0,0,22"
+                                Content="4 Bedroom"
+                                FontFamily="{StaticResource HelveticaNeue-Medium}"
+                                IsChecked="{x:Bind ViewModel.FourBedRooms, Mode=TwoWay}"
+                                Style="{StaticResource RoomCheckBoxStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <Button
+                        Grid.Row="4"
+                        Width="124"
+                        Height="45"
+                        Margin="0,0,0,58"
+                        Padding="10,0,0,0"
+                        Background="{StaticResource PrimaryColor}"
+                        Command="{x:Bind ViewModel.ResetFilterApartmentsCommand}"
+                        Content="Reset Filters"
+                        CornerRadius="2"
+                        FontFamily="{StaticResource HelveticaNeue-Bold}"
+                        FontSize="12"
+                        Foreground="White" />
+                </Grid>
+            </Viewbox>
             <Grid
                 Grid.Row="1"
                 Grid.Column="2"
-                Margin="2,50,2,0"
+                Margin="204,50,2,0"
                 Padding="16,0,32,0"
                 HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
@@ -477,13 +485,15 @@
                 <NavigationViewItemSeparator
                     Grid.Row="1"
                     Grid.Column="0"
-                    Grid.ColumnSpan="9" />
+                    Grid.ColumnSpan="9"
+                    Margin="0,22,0,16" />
             </Grid>
             <GridView
                 x:Name="ContentArea"
                 Grid.Row="2"
                 Grid.Column="2"
                 MaxHeight="800"
+                Margin="204,0,0,0"
                 Padding="8,0,20,8"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
@@ -497,7 +507,7 @@
                 SelectionMode="None">
                 <GridView.ItemContainerStyle>
                     <Style BasedOn="{StaticResource BorderlessGridViewItem}" TargetType="GridViewItem">
-                        <Setter Property="Margin" Value="6" />
+                        <Setter Property="Margin" Value="6,6,6,32" />
                     </Style>
                 </GridView.ItemContainerStyle>
                 <GridView.ItemTemplate>
@@ -591,6 +601,6 @@
                 </GridView.ItemTemplate>
             </GridView>
         </Grid>
-    </ScrollViewer>
+    </Viewbox>
 
 </Page>
