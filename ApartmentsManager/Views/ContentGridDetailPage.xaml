@@ -11,71 +11,69 @@
         <helpers:CurrencyConverter x:Key="CurrencyConverter" />
     </Page.Resources>
 
-    <Viewbox Margin="-5,0,0,0">
-        <Grid x:Name="mainGrid">
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Rectangle
+            Grid.Row="0"
+            Grid.Column="0"
+            Width="25"
+            Height="118"
+            Fill="{StaticResource PrimaryColor}" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="0,42,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            CharacterSpacing="-85"
+            FontFamily="{StaticResource HelveticaNeue-Bold}"
+            FontSize="52"
+            FontWeight="Bold"
+            Text="Floorplan" />
+        <Image
+            Grid.Row="1"
+            Grid.Column="2"
+            Width="725"
+            Height="725"
+            Margin="0,119,165,550"
+            Source="ms-appx:///Assets/Building.png" />
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="106,114,253,550">
             <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="100" />
-            </Grid.ColumnDefinitions>
-            <Rectangle
-                Grid.Row="0"
-                Grid.Column="0"
-                Width="25"
-                Height="118"
-                Fill="{StaticResource PrimaryColor}" />
             <TextBlock
                 Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Margin="0,42,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                CharacterSpacing="-85"
-                FontFamily="{StaticResource HelveticaNeue-Bold}"
-                FontSize="52"
+                CharacterSpacing="-100"
+                FontSize="89"
                 FontWeight="Bold"
-                Text="Floorplan" />
-            <Image
+                Text="{x:Bind ViewModel.ItemDetail}" />
+            <Button
                 Grid.Row="1"
-                Grid.Column="2"
-                Width="725"
-                Height="725"
-                Margin="0,119,165,550"
-                Source="ms-appx:///Assets/Building.png" />
-            <Grid
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="106,114,253,550">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock
-                    Grid.Row="0"
-                    CharacterSpacing="-100"
-                    FontSize="89"
-                    FontWeight="Bold"
-                    Text="{x:Bind ViewModel.ItemDetail}" />
-                <Button
-                    Grid.Row="1"
-                    Width="230"
-                    Height="80"
-                    HorizontalAlignment="Left"
-                    Background="{StaticResource PrimaryColor}"
-                    Command="{x:Bind ViewModel.GoBackCommand}"
-                    Content="Back"
-                    FontSize="22"
-                    FontWeight="Bold"
-                    Foreground="White" />
-            </Grid>
+                Width="230"
+                Height="80"
+                HorizontalAlignment="Left"
+                Background="{StaticResource PrimaryColor}"
+                Command="{x:Bind ViewModel.GoBackCommand}"
+                Content="Back"
+                FontSize="22"
+                FontWeight="Bold"
+                Foreground="White" />
         </Grid>
-    </Viewbox>
+    </Grid>
 
 </Page>

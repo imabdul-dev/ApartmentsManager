@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml;
 using ApartmentsManager.Helpers;
 using ApartmentsManager.Models;
 using ApartmentsManager.Services;
@@ -255,6 +256,30 @@ namespace ApartmentsManager.ViewModels
 
         #endregion
 
+        #region List
+
+        private Visibility _listVisibility;
+        private Visibility _emptyListTextBlockVisibility;
+
+        public Visibility ListVisibility
+        {
+            get => _listVisibility;
+            set {
+            Set(ref _listVisibility, value);
+        }
+        }
+
+        public Visibility EmptyListTextBlockVisibility
+        {
+            get => _emptyListTextBlockVisibility;
+            set
+            {
+                Set(ref _emptyListTextBlockVisibility, value);
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Commands
@@ -274,6 +299,7 @@ namespace ApartmentsManager.ViewModels
             _source = new List<SampleApartment>();
             Apartments = new List<SampleApartment>();
             _selectedApartment = new SampleApartment();
+            EmptyListTextBlockVisibility = Visibility.Collapsed;
         }
 
         #endregion
@@ -366,8 +392,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
                 if (BlockB)
                 {
@@ -375,8 +402,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
                 if (BlockC)
                 {
@@ -384,8 +412,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
                 if (BlockD)
                 {
@@ -393,8 +422,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
                 if (BlockE)
                 {
@@ -402,8 +432,8 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+                    isfiltered = true;
                 }
 
                 //Filter by availibility
@@ -413,8 +443,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
                 if (IsUnavailable)
                 {
@@ -422,8 +453,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
                 if (IsReserved)
                 {
@@ -431,8 +463,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
 
                 //Filter by rooms
@@ -442,8 +475,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
                 if (TwoBedRooms)
                 {
@@ -451,8 +485,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
                 if (ThreeBedRooms)
                 {
@@ -460,8 +495,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
                 if (FourBedRooms)
                 {
@@ -469,8 +505,9 @@ namespace ApartmentsManager.ViewModels
                     if (items.Any())
                     {
                         apartments1.AddRange(items);
-                        isfiltered = true;
                     }
+
+                    isfiltered = true;
                 }
 
                 if (!isfiltered)
@@ -507,6 +544,17 @@ namespace ApartmentsManager.ViewModels
                 {
                     Apartments = new List<SampleApartment>(apartments2.OrderBy(x => x.Block));
                 }
+            }
+
+            if (Apartments.Count == 0)
+            {
+                ListVisibility = Visibility.Collapsed;
+                EmptyListTextBlockVisibility = Visibility.Visible;
+            }
+            else
+            {
+                ListVisibility = Visibility.Visible;
+                EmptyListTextBlockVisibility = Visibility.Collapsed;
             }
         }
     }
