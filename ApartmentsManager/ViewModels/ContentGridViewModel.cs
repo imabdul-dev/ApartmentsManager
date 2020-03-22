@@ -13,6 +13,18 @@ namespace ApartmentsManager.ViewModels
 {
     public class ContentGridViewModel : Observable
     {
+        #region Constructor
+
+        public ContentGridViewModel()
+        {
+            _source = new List<SampleApartment>();
+            Apartments = new List<SampleApartment>();
+            _selectedApartment = new SampleApartment();
+            EmptyListTextBlockVisibility = Visibility.Collapsed;
+        }
+
+        #endregion
+
         #region Properties
 
         #region Apartments
@@ -292,17 +304,7 @@ namespace ApartmentsManager.ViewModels
 
         #endregion
 
-        #region Constructor
-
-        public ContentGridViewModel()
-        {
-            _source = new List<SampleApartment>();
-            Apartments = new List<SampleApartment>();
-            _selectedApartment = new SampleApartment();
-            EmptyListTextBlockVisibility = Visibility.Collapsed;
-        }
-
-        #endregion
+        #region Command Events
 
         public async Task LoadDataAsync()
         {
@@ -371,6 +373,10 @@ namespace ApartmentsManager.ViewModels
 
             FilterApartments();
         }
+
+        #endregion
+
+        #region Methods
 
         private void FilterApartments()
         {
@@ -557,5 +563,7 @@ namespace ApartmentsManager.ViewModels
                 EmptyListTextBlockVisibility = Visibility.Collapsed;
             }
         }
+
+        #endregion
     }
 }

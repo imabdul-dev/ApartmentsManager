@@ -10,8 +10,8 @@
     xmlns:helpers="using:ApartmentsManager.Helpers"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:models="using:ApartmentsManager.Models"
-    MinWidth="1520"
-    MinHeight="760"
+    MinWidth="1920"
+    MinHeight="1080"
     Style="{StaticResource PageStyle}">
 
     <Page.Resources>
@@ -27,13 +27,13 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Rectangle
             Grid.Row="0"
             Grid.Column="0"
             Width="25"
-            Height="118"
+            Height="116"
             Fill="{StaticResource PrimaryColor}" />
         <TextBlock
             Grid.Row="0"
@@ -50,7 +50,7 @@
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="1"
-            Margin="55,0,0,0"
+            Margin="55,0,150,0"
             VerticalAlignment="Top"
             extensions:ScrollViewerExtensions.EnableMiddleClickScrolling="True"
             ScrollViewer.VerticalScrollBarVisibility="Visible">
@@ -67,7 +67,7 @@
                 Padding="10,0,0,0">
                 <Border
                     Width="91"
-                    Height="35"
+                    Height="34"
                     HorizontalAlignment="Left"
                     Background="{StaticResource SecondaryColor}">
                     <TextBlock
@@ -79,7 +79,7 @@
                         Foreground="White"
                         Text="BLOCK" />
                 </Border>
-                <StackPanel Margin="0,35,0,0" Orientation="Horizontal">
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
                     <CheckBox
                         Margin="5,0,25,5"
                         Content="A"
@@ -120,11 +120,11 @@
             <StackPanel
                 Grid.Row="1"
                 Grid.Column="0"
-                Margin="0,52,0,0"
+                Margin="0,30,0,0"
                 Padding="10,0,0,0">
                 <Border
                     Width="91"
-                    Height="35"
+                    Height="34"
                     HorizontalAlignment="Left"
                     Background="{StaticResource SecondaryColor}">
                     <TextBlock
@@ -138,7 +138,7 @@
                 </Border>
                 <controls:RangeSelector
                     Name="priceSlider"
-                    Margin="-18,35,0,0"
+                    Margin="-18,30,5,0"
                     VerticalAlignment="Top"
                     behaviors:SliderRangeMaxBindingBehavior.RangeMax="{x:Bind ViewModel.MaxPrice, Mode=TwoWay}"
                     behaviors:SliderRangeMinBindingBehavior.RangeMin="{x:Bind ViewModel.MinPrice, Mode=TwoWay}"
@@ -148,7 +148,7 @@
                     Minimum="100000" />
                 <Grid
                     Width="{Binding ElementName=priceSlider, Path=ActualWidth}"
-                    Margin="0,15,0,0"
+                    Margin="0,13,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
@@ -174,11 +174,11 @@
             <StackPanel
                 Grid.Row="2"
                 Grid.Column="0"
-                Margin="0,52,0,0"
+                Margin="0,38,0,0"
                 Padding="10,0,0,0">
                 <Border
                     Width="105"
-                    Height="35"
+                    Height="34"
                     HorizontalAlignment="Left"
                     Background="{StaticResource SecondaryColor}">
                     <TextBlock
@@ -192,7 +192,7 @@
                 </Border>
                 <controls:RangeSelector
                     Name="floorsSlider"
-                    Margin="-18,35,0,0"
+                    Margin="-18,31,5,0"
                     VerticalAlignment="Top"
                     behaviors:SliderRangeMaxBindingBehavior.RangeMax="{x:Bind ViewModel.MaxFloors, Mode=TwoWay}"
                     behaviors:SliderRangeMinBindingBehavior.RangeMin="{x:Bind ViewModel.MinFloors, Mode=TwoWay}"
@@ -202,7 +202,7 @@
                     Minimum="0" />
                 <Grid
                     Width="{Binding ElementName=floorsSlider, Path=ActualWidth}"
-                    Margin="0,12,0,0"
+                    Margin="0,6,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
@@ -231,14 +231,14 @@
             </StackPanel>
             <StackPanel
                 Grid.Row="3"
-                Margin="0,52,0,0"
+                Margin="0,45,0,0"
                 Padding="10,0,0,0"
                 Orientation="Horizontal">
                 <StackPanel Margin="0,0,0,22">
                     <Border
                         Width="105"
-                        Height="35"
-                        Margin="0,0,0,40"
+                        Height="34"
+                        Margin="0,0,0,28"
                         HorizontalAlignment="Left"
                         Background="{StaticResource SecondaryColor}">
                         <TextBlock
@@ -251,19 +251,18 @@
                             Text="STATUS" />
                     </Border>
                     <CheckBox
-                        Margin="0,0,0,18"
+                        Margin="0,0,0,8"
                         Content="Available"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
                         IsChecked="{x:Bind ViewModel.IsAvailable, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                     <CheckBox
-                        Margin="0,0,0,18"
+                        Margin="0,0,0,8"
                         Content="Unavailable"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
                         IsChecked="{x:Bind ViewModel.IsUnavailable, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                     <CheckBox
-                        Margin="0,0,0,18"
                         Content="Reserved"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
                         IsChecked="{x:Bind ViewModel.IsReserved, Mode=TwoWay}"
@@ -273,7 +272,7 @@
                     <Border
                         Width="137"
                         Height="35"
-                        Margin="0,0,0,40"
+                        Margin="0,0,0,26"
                         HorizontalAlignment="Left"
                         Background="{StaticResource SecondaryColor}">
                         <TextBlock
@@ -286,19 +285,19 @@
                             Text="BEDROOMS" />
                     </Border>
                     <CheckBox
-                        Margin="0,0,0,18"
+                        Margin="0,0,0,4"
                         Content="1 Bedroom"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
                         IsChecked="{x:Bind ViewModel.OneBedRoom, Mode=TwoWay}"
                         Style="{StaticResource RoomCheckBoxStyle}" />
                     <CheckBox
-                        Margin="0,0,0,18"
+                        Margin="0,0,0,4"
                         Content="2 Bedroom"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
                         IsChecked="{x:Bind ViewModel.TwoBedRooms, Mode=TwoWay}"
                         Style="{StaticResource RoomCheckBoxStyle}" />
                     <CheckBox
-                        Margin="0,0,0,18"
+                        Margin="0,0,0,4"
                         Content="3 Bedroom"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
                         IsChecked="{x:Bind ViewModel.ThreeBedRooms, Mode=TwoWay}"
@@ -314,7 +313,7 @@
                 Grid.Row="4"
                 Width="124"
                 Height="45"
-                Margin="0,0,0,55"
+                Margin="10,0,0,0"
                 Padding="10,0,0,0"
                 Background="{StaticResource PrimaryColor}"
                 Command="{x:Bind ViewModel.ResetFilterApartmentsCommand}"
@@ -327,27 +326,29 @@
         <Grid
             Grid.Row="1"
             Grid.Column="2"
-            Margin="204,50,2,0"
+            Margin="0,50,65,0"
             Padding="16,0,32,0"
             HorizontalAlignment="Center"
             Visibility="{x:Bind ViewModel.ListVisibility, Mode=TwoWay}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="160" />
-                <ColumnDefinition Width="160" />
-                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="120" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Border
-                Grid.Column="0"
+                Grid.Row="0"
+                Grid.Column="1"
                 Height="38"
                 Margin="{StaticResource ListingsMargin}"
                 Background="{StaticResource PrimaryColor}">
@@ -362,7 +363,7 @@
             </Border>
             <Border
                 Grid.Row="0"
-                Grid.Column="1"
+                Grid.Column="2"
                 Height="38"
                 Margin="{StaticResource ListingsMargin}"
                 Background="{StaticResource PrimaryColor}">
@@ -377,7 +378,7 @@
             </Border>
             <Border
                 Grid.Row="0"
-                Grid.Column="2"
+                Grid.Column="3"
                 Height="38"
                 Margin="{StaticResource ListingsMargin}"
                 Background="{StaticResource PrimaryColor}">
@@ -392,7 +393,7 @@
             </Border>
             <Border
                 Grid.Row="0"
-                Grid.Column="3"
+                Grid.Column="4"
                 Height="38"
                 Margin="{StaticResource ListingsMargin}"
                 Background="{StaticResource PrimaryColor}">
@@ -407,7 +408,7 @@
             </Border>
             <Border
                 Grid.Row="0"
-                Grid.Column="4"
+                Grid.Column="5"
                 Height="38"
                 Margin="{StaticResource ListingsMargin}"
                 Background="{StaticResource PrimaryColor}">
@@ -422,7 +423,7 @@
             </Border>
             <Border
                 Grid.Row="0"
-                Grid.Column="5"
+                Grid.Column="6"
                 Height="38"
                 Margin="{StaticResource ListingsMargin}"
                 Background="{StaticResource PrimaryColor}">
@@ -437,7 +438,7 @@
             </Border>
             <Border
                 Grid.Row="0"
-                Grid.Column="6"
+                Grid.Column="7"
                 Height="38"
                 Margin="{StaticResource ListingsMargin}"
                 Background="{StaticResource PrimaryColor}">
@@ -452,7 +453,7 @@
             </Border>
             <Border
                 Grid.Row="0"
-                Grid.Column="7"
+                Grid.Column="8"
                 Height="38"
                 Margin="{StaticResource ListingsMargin}"
                 Background="{StaticResource PrimaryColor}">
@@ -467,7 +468,7 @@
             </Border>
             <Border
                 Grid.Row="0"
-                Grid.Column="8"
+                Grid.Column="9"
                 Height="38"
                 Margin="{StaticResource ListingsMargin}"
                 Background="{StaticResource PrimaryColor}">
@@ -483,8 +484,8 @@
             <NavigationViewItemSeparator
                 Grid.Row="1"
                 Grid.Column="0"
-                Grid.ColumnSpan="9"
-                Margin="0,22,0,16"
+                Grid.ColumnSpan="10"
+                Margin="8,22,0,16"
                 Visibility="{x:Bind ViewModel.ListVisibility, Mode=TwoWay}" />
         </Grid>
         <TextBlock
@@ -501,8 +502,8 @@
             Grid.Row="2"
             Grid.Column="2"
             MaxHeight="800"
-            Margin="204,0,0,0"
-            Padding="8,0,20,8"
+            Margin="-15,0,32,0"
+            Padding="8,0,32,8"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             animations:Connected.ListItemElementName="row"
@@ -516,7 +517,7 @@
             Visibility="{x:Bind ViewModel.ListVisibility, Mode=TwoWay}">
             <GridView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource BorderlessGridViewItem}" TargetType="GridViewItem">
-                    <Setter Property="Margin" Value="6,6,6,32" />
+                    <Setter Property="Margin" Value="6,6,6,25" />
                 </Style>
             </GridView.ItemContainerStyle>
             <GridView.ItemTemplate>
@@ -533,15 +534,15 @@
                             Background="White"
                             CornerRadius="1.5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="15" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="160" />
-                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="180" />
+                                <ColumnDefinition Width="180" />
                                 <ColumnDefinition Width="65" />
                             </Grid.ColumnDefinitions>
                             <TextBlock

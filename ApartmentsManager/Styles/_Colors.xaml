@@ -22,6 +22,9 @@
 
     <!--  Button Mouse Hover Color  -->
     <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#4bd7b5" />
+    <SolidColorBrush x:Key="ButtonForegroundPressed" Color="#ffffff" />
 
     <!--  Application Colors  -->
     <SolidColorBrush x:Key="PrimaryColor" Color="#4bd7b5" />

@@ -10,7 +10,7 @@ namespace ApartmentsManager.Views
         {
             InitializeComponent();
             DataContext = ViewModel;
-            ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
+            ViewModel.Initialize(shellFrame, navigationView);
         }
     }
 }

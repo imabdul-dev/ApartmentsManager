@@ -15,8 +15,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
                     <Ellipse
-                        Width="30"
-                        Height="30"
+                        Width="28"
+                        Height="28"
                         Fill="White"
                         Stroke="#525252"
                         StrokeThickness="2" />
@@ -45,7 +45,7 @@
                         <Rectangle
                             Grid.Column="0"
                             Width="6"
-                            Height="45"
+                            Height="40"
                             Margin="20,0,0,0"
                             Fill="{TemplateBinding Background}" />
                         <Border
@@ -62,7 +62,7 @@
                         <Rectangle
                             Grid.Column="2"
                             Width="6"
-                            Height="45"
+                            Height="40"
                             Margin="-20,0,0,0"
                             Fill="{TemplateBinding Background}" />
                         <Canvas

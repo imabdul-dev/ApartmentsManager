@@ -12,7 +12,7 @@
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
         <Setter Property="MinWidth" Value="40" />
-        <Setter Property="MinHeight" Value="22" />
+        <Setter Property="MinHeight" Value="20" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="FocusVisualMargin" Value="-7,-3,-7,-3" />
         <Setter Property="Template">
@@ -25,19 +25,19 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="22" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid Height="50" VerticalAlignment="Top">
                             <Border
-                                Width="24"
-                                Height="24"
+                                Width="22"
+                                Height="22"
                                 BorderBrush="Black"
                                 BorderThickness="1.5">
                                 <Rectangle
                                     x:Name="NormalRectangle"
-                                    Width="24"
-                                    Height="24"
+                                    Width="22"
+                                    Height="22"
                                     Fill="{ThemeResource CheckBoxCheckBackgroundFillUnchecked}"
                                     Stroke="{ThemeResource CheckBoxCheckBackgroundStrokeUnchecked}"
                                     StrokeThickness="0"
@@ -46,7 +46,7 @@
                             <FontIcon
                                 x:Name="CheckGlyph"
                                 FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                FontSize="24"
+                                FontSize="22"
                                 Foreground="{ThemeResource SystemControlHighlightAltChromeWhiteBrush}"
                                 Glyph="&#xE73C;"
                                 Opacity="0" />
@@ -414,7 +414,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
-        <Setter Property="MinWidth" Value="40" />
+        <Setter Property="MinWidth" Value="24" />
         <Setter Property="MinHeight" Value="22" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="BorderThickness" Value="2" />

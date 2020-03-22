@@ -27,6 +27,8 @@ namespace ApartmentsManager.ViewModels
 
         #endregion
 
+        #region Command Events
+
         public void InitializeAsync(SampleApartment apartment)
         {
             Item = apartment;
@@ -36,5 +38,7 @@ namespace ApartmentsManager.ViewModels
         {
             NavigationService.GoBack();
         }
+
+        #endregion
     }
 }
