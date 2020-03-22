@@ -84,35 +84,35 @@
                         Margin="5,0,25,5"
                         Content="A"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
-                        FontSize="22"
+                        FontSize="18"
                         IsChecked="{x:Bind ViewModel.BlockA, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                     <CheckBox
                         Margin="0,0,25,5"
                         Content="B"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
-                        FontSize="22"
+                        FontSize="18"
                         IsChecked="{x:Bind ViewModel.BlockB, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                     <CheckBox
                         Margin="0,0,25,5"
                         Content="C"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
-                        FontSize="22"
+                        FontSize="18"
                         IsChecked="{x:Bind ViewModel.BlockC, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                     <CheckBox
                         Margin="0,0,25,5"
                         Content="D"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
-                        FontSize="22"
+                        FontSize="18"
                         IsChecked="{x:Bind ViewModel.BlockD, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                     <CheckBox
                         Margin="0,0,0,5"
                         Content="E"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
-                        FontSize="22"
+                        FontSize="18"
                         IsChecked="{x:Bind ViewModel.BlockE, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                 </StackPanel>
@@ -254,17 +254,20 @@
                         Margin="0,0,0,8"
                         Content="Available"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
+                        FontSize="19"
                         IsChecked="{x:Bind ViewModel.IsAvailable, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                     <CheckBox
                         Margin="0,0,0,8"
                         Content="Unavailable"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
+                        FontSize="19"
                         IsChecked="{x:Bind ViewModel.IsUnavailable, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                     <CheckBox
                         Content="Reserved"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
+                        FontSize="19"
                         IsChecked="{x:Bind ViewModel.IsReserved, Mode=TwoWay}"
                         Style="{StaticResource DefaultCheckBoxStyle}" />
                 </StackPanel>
@@ -288,23 +291,27 @@
                         Margin="0,0,0,4"
                         Content="1 Bedroom"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
+                        FontSize="19"
                         IsChecked="{x:Bind ViewModel.OneBedRoom, Mode=TwoWay}"
                         Style="{StaticResource RoomCheckBoxStyle}" />
                     <CheckBox
                         Margin="0,0,0,4"
                         Content="2 Bedroom"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
+                        FontSize="19"
                         IsChecked="{x:Bind ViewModel.TwoBedRooms, Mode=TwoWay}"
                         Style="{StaticResource RoomCheckBoxStyle}" />
                     <CheckBox
                         Margin="0,0,0,4"
                         Content="3 Bedroom"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
+                        FontSize="19"
                         IsChecked="{x:Bind ViewModel.ThreeBedRooms, Mode=TwoWay}"
                         Style="{StaticResource RoomCheckBoxStyle}" />
                     <CheckBox
                         Content="4 Bedroom"
                         FontFamily="{StaticResource HelveticaNeue-Medium}"
+                        FontSize="19"
                         IsChecked="{x:Bind ViewModel.FourBedRooms, Mode=TwoWay}"
                         Style="{StaticResource RoomCheckBoxStyle}" />
                 </StackPanel>

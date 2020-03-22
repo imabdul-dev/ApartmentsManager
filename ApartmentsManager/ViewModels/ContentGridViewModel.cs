@@ -50,7 +50,7 @@ namespace ApartmentsManager.ViewModels
                 //|| IsAvailable || IsUnavailable || IsReserved || MinFloors > 0 || MaxFloors > 0 || MinPrice > 0 || MaxPrice > 0
                 return !BlockA && !BlockB && !BlockC && !BlockD && !BlockE && !IsAvailable && !IsUnavailable &&
                        !IsReserved && !OneBedRoom && !TwoBedRooms && !ThreeBedRooms && !FourBedRooms
-                       && !(MinPrice > 100000 || MaxPrice < 1000000) && !(MinFloors > 0 || MaxPrice < MaxFloors);
+                       && !(MinPrice > 100000) && !(MaxPrice < 1000000) && !(MinFloors > 0) && !(MaxFloors < 100);
             }
         }
 
@@ -386,140 +386,151 @@ namespace ApartmentsManager.ViewModels
             }
             else
             {
-                var apartments1 = new List<SampleApartment>();
-                var apartments2 = new List<SampleApartment>();
-                var apartments3 = new List<SampleApartment>();
+                var filtered = new List<SampleApartment>();
                 var isfiltered = false;
+
+                var apartments0 = new List<SampleApartment>(_source);
 
                 //Filter by blocks
                 if (BlockA)
                 {
-                    var items = _source.Where(x => x.Block == 'A');
+                    var items = apartments0.Where(x => x.Block == 'A');
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
                 if (BlockB)
                 {
-                    var items = _source.Where(x => x.Block == 'B');
+                    var items = apartments0.Where(x => x.Block == 'B');
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
                 if (BlockC)
                 {
-                    var items = _source.Where(x => x.Block == 'C');
+                    var items = apartments0.Where(x => x.Block == 'C');
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
                 if (BlockD)
                 {
-                    var items = _source.Where(x => x.Block == 'D');
+                    var items = apartments0.Where(x => x.Block == 'D');
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
                 if (BlockE)
                 {
-                    var items = _source.Where(x => x.Block == 'E');
+                    var items = apartments0.Where(x => x.Block == 'E');
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
+
                     isfiltered = true;
                 }
+
+                var apartments1 = isfiltered ? new List<SampleApartment>(filtered) : new List<SampleApartment>(apartments0);
+
+                filtered = new List<SampleApartment>();
+                isfiltered = false;
 
                 //Filter by availibility
                 if (IsAvailable)
                 {
-                    var items = _source.Where(x => x.Status == Status.Available);
+                    var items = apartments1.Where(x => x.Status == Status.Available);
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
                 if (IsUnavailable)
                 {
-                    var items = _source.Where(x => x.Status == Status.Unavailable);
+                    var items = apartments1.Where(x => x.Status == Status.Unavailable);
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
                 if (IsReserved)
                 {
-                    var items = _source.Where(x => x.Status == Status.Reserved);
+                    var items = apartments1.Where(x => x.Status == Status.Reserved);
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
 
+                apartments0 = isfiltered ? new List<SampleApartment>(filtered) : new List<SampleApartment>(apartments1);
+
+                filtered = new List<SampleApartment>();
+                isfiltered = false;
+
                 //Filter by rooms
                 if (OneBedRoom)
                 {
-                    var items = _source.Where(x => x.Bedrooms == 1);
+                    var items = apartments0.Where(x => x.Bedrooms == 1);
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
                 if (TwoBedRooms)
                 {
-                    var items = _source.Where(x => x.Bedrooms == 2);
+                    var items = apartments0.Where(x => x.Bedrooms == 2);
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
                 if (ThreeBedRooms)
                 {
-                    var items = _source.Where(x => x.Bedrooms == 3);
+                    var items = apartments0.Where(x => x.Bedrooms == 3);
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
                 if (FourBedRooms)
                 {
-                    var items = _source.Where(x => x.Bedrooms == 4);
+                    var items = apartments0.Where(x => x.Bedrooms == 4);
                     if (items.Any())
                     {
-                        apartments1.AddRange(items);
+                        filtered.AddRange(items);
                     }
 
                     isfiltered = true;
                 }
 
-                if (!isfiltered)
-                {
-                    apartments1 = new List<SampleApartment>(_source);
-                }
+                apartments1 = isfiltered ? new List<SampleApartment>(filtered) : new List<SampleApartment>(apartments0);
+
+                filtered = new List<SampleApartment>();
+                isfiltered = false;
 
                 //Filter by price
                 if (MinPrice > 100000 || MaxPrice < 1000000)
@@ -527,29 +538,31 @@ namespace ApartmentsManager.ViewModels
                     var priceFilter = apartments1.Where(x => x.Price >= MinPrice && x.Price <= MaxPrice);
                     if (priceFilter.Any())
                     {
-                        apartments2.AddRange(priceFilter);
+                        filtered.AddRange(priceFilter);
                     }
+
+                    isfiltered = true;
                 }
-                else
-                {
-                    apartments2 = !isfiltered ? new List<SampleApartment>(_source) : new List<SampleApartment>(apartments1);
-                }
+
+                apartments0 = isfiltered ? new List<SampleApartment>(filtered) : new List<SampleApartment>(apartments1);
+
+                filtered = new List<SampleApartment>();
+                isfiltered = false;
 
                 //Filter by rooms
                 if (MinFloors > 0 || MaxFloors < 100)
                 {
-                    var floorsFilter = apartments2.Where(x => x.Floor >= MinFloors && x.Floor <= MaxFloors);
+                    var floorsFilter = apartments0.Where(x => x.Floor >= MinFloors && x.Floor <= MaxFloors);
                     if (floorsFilter.Any())
                     {
-                        apartments3.AddRange(floorsFilter);
+                        filtered.AddRange(floorsFilter);
                     }
 
-                    Apartments = new List<SampleApartment>(apartments3.OrderBy(x => x.Block));
+                    isfiltered = true;
                 }
-                else
-                {
-                    Apartments = new List<SampleApartment>(apartments2.OrderBy(x => x.Block));
-                }
+
+                apartments1 = isfiltered ? new List<SampleApartment>(filtered) : new List<SampleApartment>(apartments0);
+                Apartments = new List<SampleApartment>(apartments1.OrderBy(x => x.Block));
             }
 
             if (Apartments.Count == 0)
